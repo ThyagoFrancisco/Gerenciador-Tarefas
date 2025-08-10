@@ -57,7 +57,7 @@ ROOT_URLCONF = 'meutarefas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +123,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Para onde o Django redireciona após login
+LOGIN_REDIRECT_URL = 'lista_tarefas'
+
+# Para onde o Django manda quando precisa de login
+LOGIN_URL = 'login'
+
+# Para onde o Django redireciona após logout
+LOGOUT_REDIRECT_URL = 'login'
+
+# Para onde Redirecionar após registro
+LOGOUT_REDIRECT_URL = 'login'
+

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Criar Conta{% endblock %}
+
+{% block content %}
+<h1>Cria Conta</h1>
+<form method="POST" class="card p-3 shadow-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+</form>
+
+<a href="{% url 'login' %}">Já tem uma conta</a>
+{% endblock %}

@@ -1,11 +1,44 @@
-<h1>Lista de Tarefas</h1>
-<a href="{% url 'nova_tarefa' %}">Nova Tarefa</a>
-<ul>
-    {% for tarefa in tarefas %}
-        <li>
-            {{ tarefa.titulo }} - {% if tarefa.concluida %}Concluída{% else %}Pendente{% endif %}
-        </li>
-    {% empty %}
-        <li>Nenhuma tarefa encontrada.</li>
-    {% endfor %}
+{% extends 'base.html' %}
+{% block title %}Minhas Tarefas{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">Minhas Tarefas</h1>
+<a href="{% url 'nova_tarefa' %}" class="btn btn-primary mb-3">Nova Tarefa</a>
+
+<h2>Pendentes</h2>
+<ul class="list-group mb-4">
+  {% for tarefa in pendentes %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ tarefa.titulo }}
+      <div>
+        <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn btn-warning btn-sm">Editar</a>
+        <a href="{% url 'excluir_tarefa' tarefa.id %}" class="btn btn-danger btn-sm">Excluir</a>
+      </div>
+    </li>
+  {% empty %}
+    <li class="list-group-item">Nenhuma tarefa pendente.</li>
+  {% endfor %}
 </ul>
+
+<h2>Concluídas</h2>
+<ul class="list-group">
+  {% for tarefa in concluidas %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ tarefa.titulo }}
+      <div>
+        <a href="{% url 'toggle_concluida' tarefa.id %}" 
+        class="btn btn-success btn-sm" {% if tarefa.concluida %}btn-success
+        {% else %}btn-outline-success{% endif %}>Concluir</a>
+
+        <a href="{% url 'editar_tarefa' tarefa.id %}" 
+        class="btn btn-warning btn-sm">Editar</a>
+
+        <a href="{% url 'excluir_tarefa' tarefa.id %}"
+         class="btn btn-danger btn-sm">Excluir</a>
+      </div>
+    </li>
+  {% empty %}
+    <li class="list-group-item">Nenhuma tarefa concluída.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
