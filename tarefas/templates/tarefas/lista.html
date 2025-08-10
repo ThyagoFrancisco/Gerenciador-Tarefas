@@ -1,0 +1,11 @@
+<h1>Lista de Tarefas</h1>
+<a href="{% url 'nova_tarefa' %}">Nova Tarefa</a>
+<ul>
+    {% for tarefa in tarefas %}
+        <li>
+            {{ tarefa.titulo }} - {% if tarefa.concluida %}Concluída{% else %}Pendente{% endif %}
+        </li>
+    {% empty %}
+        <li>Nenhuma tarefa encontrada.</li>
+    {% endfor %}
+</ul>
